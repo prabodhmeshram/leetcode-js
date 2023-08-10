@@ -4,12 +4,9 @@
  * @return {boolean}
  */
 var isValid = function (s) {
-  // const strArr = s.split('')
   let parenthesisStack = [s.charAt(0)];
 
-  // const length = s.length
   for (i = 1; i < s.length; i++) {
-    // const currChar = strArr[i]
     const currChar = s.charAt(i);
     // Check if any of the closing tag is encountered
     // if yes then perform operations on it
