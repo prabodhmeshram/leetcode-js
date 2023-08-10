@@ -35,7 +35,7 @@ var addTwoNumbers = function (l1, l2) {
       carry = 0;
     }
 
-    hasNext = (l1 && l1.val !== "undefined") || (l2 && l2.val !== "undefined");
+    hasNext = (l1 && l1.val !== undefined) || (l2 && l2.val !== undefined);
     if (!hasNext && carry) {
       sumArr.push(carry);
     }
