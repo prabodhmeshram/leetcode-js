@@ -12,10 +12,10 @@ var isValid = function (s) {
     const currChar = s.charAt(i);
     // Check if any of the closing tag is encountered
     // if yes then perform operations on it
-    // else push the currChar on top of parenthesiStack
+    // else push the currChar on top of parenthesisStack
     const topChar = parenthesisStack[parenthesisStack.length - 1];
     if (currChar === ")") {
-      // check if it matches with top of parentheisStack
+      // check if it matches with top of parenthesisStack
       if (topChar !== "(") {
         return false;
       }
