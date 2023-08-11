@@ -37,6 +37,10 @@ var generate = function (numRows) {
 
 ```
 
+` NOTE: Seems like this was the most optimal approach, we do not need to run the
+ computation to calculate the Combinatorial operation to get each cell
+ we simply use pre computed cells to arrive our solution which is more efficient`
+
 ### Stats from LeetCode
 
 #### Solution one stats
