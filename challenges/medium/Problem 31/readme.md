@@ -85,6 +85,114 @@ function getPermutations(stack, nums, store, freq) {
 
 ```
 
+### Second Approach
+
+The new approach do not calculate all the permutations.
+The new approach first checks if there exist a number
+which is less than the lastIndex number starting from
+secondLast index, it then continuously searches in reverse order
+of the existing array if there exist a number which is
+less than the last index.
+
+If it founds such element it swaps the places with the last
+index element. Then next step is sorting the rest of the array
+so that it becomes the next permutation
+
+The new array is merged with the original array in place
+with the last elements and hence the permutation found
+
+If there is a case when there is no element found less than the last
+element, then it simply finds the next greater element between secondLast
+element and the last one. It increments the secondLast counter
+and selects array of elements after that in sorted order
+
+If it finds any element which is greater than the current secondLast
+elements it breaks the loop
+
+Swaps the places with the greatest number found in the nums array
+at the target index and replaced in slice of sorted array.
+
+The logic is pretty complex but is also a possible solution
+that saves calculating all the permutations
+
+The Time Complexity is O(n) + O(n _ n _ n) ( looping to find number, sorting the array, finding Element)
+Not an ideal Complexity and also the space complexity is O(n) + O(1)
+
+Not very ideal solution, but its for the worst case scenario, for an average
+scenario it would be pretty faster.
+
+JS bench marking shows the code is performant and returns withing ~0.5 ms for arrays of length 100
+Leetcode benchmark is not very reliable tbh
+
+```
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+
+var nextPermutation = function(nums) {
+  let lastIndex = nums.length - 1
+  let swappable = false
+  let secondLast = lastIndex-1
+
+  while(!swappable){
+    if(nums[lastIndex] > nums[secondLast]){
+      let swap = nums[lastIndex]
+      nums[lastIndex] = nums[secondLast]
+      nums[secondLast] = swap
+      swappable = true
+    } else {
+      --secondLast
+    }
+
+    if(secondLast === -1){
+      break
+    }
+  }
+
+  if(secondLast === -1){
+
+    // If the element was not found above.
+    // do a reverse second biggest element search
+    secondLast = lastIndex - 1
+    let count = -1
+    let foundNum;
+    let numSlice;
+    while(!foundNum){
+      numSlice = nums.slice(count)
+      numSlice = numSlice.sort((a,b)=> a-b)
+
+      foundNum = numSlice.find(n=> n > nums[secondLast])
+      if(!foundNum){
+        count--
+        secondLast--
+      }else{
+        let targetIndex = numSlice.findIndex(n=> n === foundNum)
+        let swap = numSlice[targetIndex]
+        numSlice[targetIndex] = nums[secondLast]
+        nums[secondLast] = swap
+      }
+    }
+    let a = 0
+    for(let i = nums.length - numSlice.length; i < nums.length; i++){
+      nums[i] = numSlice[a++]
+    }
+  } else {
+    let remainingArray = []
+
+    for(let i = secondLast+1; i < nums.length; i++){
+      remainingArray.push(nums[i])
+    }
+
+    remainingArray = remainingArray.sort((a,b)=> a-b)
+    let a = 0
+    for(i=nums.length-remainingArray.length; i< nums.length; i++){
+      nums[i] = remainingArray[a++]
+    }
+  }
+}
+```
+
 ### Stats from LeetCode
 
 #### First Approach
