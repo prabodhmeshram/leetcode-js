@@ -193,6 +193,55 @@ var nextPermutation = function(nums) {
 }
 ```
 
+### Optimized Approach and accepted by Leetcode Compiler 😅
+
+The approach here is as follows
+
+- Find the occurrence in the series that breaks the decreasing sequence, the point
+  where the previous element is less than the next element
+- So technically we need to swap the smaller element with the just bigger number
+  which is present in the last sequence of the array
+- After the swap, we need to just reverse the sequence after the swapped index
+  as to get a increasing order of the remaining array which will result in
+  desired sequence
+
+```
+var nextPermutation = function(nums) {
+    let i = nums.length - 2;
+
+    // Find the first decreasing element from right to left
+    while (i >= 0 && nums[i] >= nums[i + 1]) {
+        i--;
+    }
+
+    if (i >= 0) {
+        let j = nums.length - 1;
+
+        // Find the element just greater than nums[i]
+        while (j >= 0 && nums[j] <= nums[i]) {
+            j--;
+        }
+
+        // Swap nums[i] and nums[j]
+        [nums[i], nums[j]] = [nums[j], nums[i]];
+    }
+
+    // Reverse the suffix to get the smallest lexicographically next permutation
+    reverse(nums, i + 1);
+    return
+};
+
+function reverse(nums, start) {
+    let end = nums.length - 1;
+    while (start < end) {
+        [nums[start], nums[end]] = [nums[end], nums[start]];
+        start++;
+        end--;
+    }
+}
+
+```
+
 ### Stats from LeetCode
 
 #### First Approach
