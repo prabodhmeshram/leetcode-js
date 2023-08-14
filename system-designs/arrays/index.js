@@ -19,7 +19,8 @@ class DynamicArray {
 
     const popped = this.data[this.length - 1];
 
-    delete this.data[--this.length];
+    delete this.data[this.length - 1];
+    this.length -= 1;
 
     return popped;
   }
@@ -35,7 +36,9 @@ class DynamicArray {
       this.data[i] = item;
       item = swapItem;
     }
-    return this.length++;
+
+    this.data[this.length++] = item;
+    return this.length;
   }
 
   remove(index) {
@@ -44,12 +47,7 @@ class DynamicArray {
     }
 
     for (let i = index; i < this.length - 1; i++) {
-      console.log(
-        "Before swap value at i = " + i + " = " + this.data[i],
-        this.data[5]
-      );
       this.data[i] = this.data[i + 1];
-      console.log("Before after swap value at i = " + i + " = " + this.data[i]);
     }
 
     delete this.data[--this.length];
@@ -68,27 +66,14 @@ myArr.push(50);
 myArr.push(60);
 myArr.push(70);
 
-// console.log(myArr.get(0))
-// console.log(myArr.get(1))
+console.log(myArr.pop());
 
-myArr.pop();
-
-console.log(myArr.get(0));
-console.log(myArr.get(1));
-console.log(myArr.length);
-console.log("Element at 3 index " + myArr.get(3));
-console.log("Element at 4 index " + myArr.get(4));
+console.log(myArr);
 
 myArr.insert(3, 40);
 
-console.log("Element at 3 index " + myArr.get(3));
-console.log("Element at 4 index " + myArr.get(4));
-console.log("Element at 5 index " + myArr.get(5));
-console.log(myArr.length);
+console.log(myArr);
 
-myArr.remove(4);
+myArr.remove(2);
 
-console.log("Element at 3 index " + myArr.get(3));
-console.log("Element at 4 index " + myArr.get(4));
-console.log("Element at 5 index " + myArr.get(5));
-console.log(myArr.length);
+console.log(myArr);
