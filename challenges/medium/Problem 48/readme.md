@@ -31,8 +31,40 @@ var rotate = function (matrix) {
 
 ```
 
+### Optimized solution
+
+First transpose the array, then reverse each row
+
+```
+var rotate = function (matrix) {
+  const len = matrix.length;
+  for (let row = 0; row < matrix.length; row++) {
+    let currRow = matrix[row];
+    for (let col = 0; col < row; col++) {
+      let data = matrix[row][col];
+      matrix[row][col] = matrix[col][row];
+      matrix[col][row] = data;
+    }
+  }
+
+  for (let row = 0; row < matrix.length; row++) {
+    let currRow = matrix[row];
+    for (let col = 0; col < currRow.length / 2; col++) {
+      let data = matrix[row][col];
+      matrix[row][col] = matrix[row][len - col - 1];
+      matrix[row][len - col - 1] = data;
+    }
+  }
+};
+
+```
+
 ### Stats from LeetCode
 
 #### Solution one stats
 
 ![Alt text](image.png)
+
+#### Solution 2 stats
+
+![Alt text](sol2.png)
