@@ -36,24 +36,21 @@ var rotate = function (matrix) {
 First transpose the array, then reverse each row
 
 ```
-var rotate = function (matrix) {
-  const len = matrix.length;
-  for (let row = 0; row < matrix.length; row++) {
-    let currRow = matrix[row];
-    for (let col = 0; col < row; col++) {
-      let data = matrix[row][col];
-      matrix[row][col] = matrix[col][row];
-      matrix[col][row] = data;
+var rotate = function(matrix) {
+    for(let row=0; row < matrix.length; row++){
+      for(let col=0; col < row; col++){
+        const data = matrix[row][col]
+        matrix[row][col] = matrix[col][row];
+        matrix[col][row] = data
+      }
     }
-  }
 
-  for (let row = 0; row < matrix.length; row++) {
-    let currRow = matrix[row];
-    for (let col = 0; col < currRow.length / 2; col++) {
-      let data = matrix[row][col];
-      matrix[row][col] = matrix[row][len - col - 1];
-      matrix[row][len - col - 1] = data;
-    }
+  for(let row=0; row <matrix.length; row++){
+      for(let col=0; col< matrix.length/2; col++) {
+        const data = matrix[row][col]
+        matrix[row][col] = matrix[row][matrix.length-col-1]
+        matrix[row][matrix.length-col-1] = data
+      }
   }
 };
 
