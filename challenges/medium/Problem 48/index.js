@@ -5,19 +5,21 @@
  */
 var rotate = function (matrix) {
   const len = matrix.length;
-  let otherMat = [...Array(len)].map((e) => Array(1).fill(0));
-  for (let row = 0; row < len; row++) {
-    for (let col = 0; col < len; col++) {
-      let fixedCol = len - row - 1;
-      otherMat[col][fixedCol] = matrix[row][col];
+  for (let row = 0; row < matrix.length; row++) {
+    let currRow = matrix[row];
+    for (let col = 0; col < row; col++) {
+      let data = matrix[row][col];
+      matrix[row][col] = matrix[col][row];
+      matrix[col][row] = data;
     }
   }
 
-  for (let row = 0; row < len; row++) {
-    for (let row = 0; row < matrix.length; row++) {
-      for (let col = 0; col < len; col++) {
-        matrix[row][col] = otherMat[row][col];
-      }
+  for (let row = 0; row < matrix.length; row++) {
+    let currRow = matrix[row];
+    for (let col = 0; col < currRow.length / 2; col++) {
+      let data = matrix[row][col];
+      matrix[row][col] = matrix[row][len - col - 1];
+      matrix[row][len - col - 1] = data;
     }
   }
 };
