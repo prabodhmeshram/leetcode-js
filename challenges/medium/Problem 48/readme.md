@@ -63,8 +63,8 @@ var rotate = function (matrix) {
 
 #### Solution one stats
 
-![Alt text](image.png)
+![Alt text](sol1.png)
 
 #### Solution 2 stats
 
-![Alt text](sol2.png)
+![Alt text](image.png)
