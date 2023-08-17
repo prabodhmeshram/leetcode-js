@@ -3,7 +3,8 @@
  * @return {number[][]}
  */
 var merge = function (intervals) {
-  let overLappingArray = [];
+  if (intervals.length === 1) return intervals;
+  let overLappingArray = [intervals[0]];
   for (let i = 0; i < intervals.length - 1; i++) {
     let overlap = null;
     if (intervals[i][1] >= intervals[i + 1][0]) {
@@ -11,8 +12,8 @@ var merge = function (intervals) {
     }
     if (overlap) {
       const top = overLappingArray.length - 1;
-      if (top > -1 && overLappingArray[top][1] >= overlap[0][0]) {
-        overLappingArray[top] = [overLappingArray[top][0], overlap[0][1]];
+      if (overLappingArray[top][1] >= overlap[0]) {
+        overLappingArray[top] = [overLappingArray[top][0], overlap[1]];
       } else {
         overLappingArray.push(overlap);
       }
@@ -20,6 +21,5 @@ var merge = function (intervals) {
       overLappingArray.push(intervals[i + 1]);
     }
   }
-
   return overLappingArray;
 };
