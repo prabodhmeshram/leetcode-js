@@ -4,6 +4,18 @@
  */
 var merge = function (intervals) {
   if (intervals.length === 1) return intervals;
+
+  // the test cases have instances where the arrays are
+  // not sorted, so need to sort them
+  intervals
+    .sort((a, b) => {
+      if (a[0] < b[0]) {
+        return a[0] - b[0];
+      }
+      return a[1] - b[1];
+    })
+    .forEach((a, index) => (intervals[index] = a));
+
   let overLappingArray = [intervals[0]];
   for (let i = 0; i < intervals.length - 1; i++) {
     let overlap = null;
