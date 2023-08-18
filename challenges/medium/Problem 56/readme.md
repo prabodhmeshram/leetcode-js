@@ -1,6 +1,6 @@
 ### Optimized solution
 
-#### TODO: summarize the solution
+#### Optimal Solution
 
 ```
 var merge = function(intervals) {
