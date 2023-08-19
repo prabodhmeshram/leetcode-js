@@ -23,6 +23,35 @@ var findDuplicate = function (nums) {
 
 ```
 
+### Second Approach
+
+There is this slow and fast pointer method that we're going to use to solve the problem
+
+```
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findDuplicate = function(nums) {
+    let slow = nums[nums[0]];
+    let fast = nums[nums[nums[0]]];
+
+    while(slow !== fast){
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+    }
+
+    fast = nums[0]
+
+    while (slow != fast) {
+        slow = nums[slow];
+        fast = nums[fast];
+    }
+    return slow;
+};
+
+```
+
 ### Stats from LeetCode
 
 #### Solution one stats
