@@ -22,3 +22,7 @@ var swapPairs = function(head) {
 };
 
 ```
+
+## LeetCode stats
+
+![Alt text](image.png)
