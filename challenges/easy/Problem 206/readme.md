@@ -128,3 +128,8 @@ var reverseList = function(head) {
 ### Recursive approach
 
 ![Alt text](image-1.png)
+
+> Note : We see that it is slightly better performant that iteratively, but it is worse in
+> case of memory. Because in recursive approach we are using O(n) memory, but in case of
+> iterative approach our memory remains contant and doesn't scale with the input and
+> hence it is O(1)
