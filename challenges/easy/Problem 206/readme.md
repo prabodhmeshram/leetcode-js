@@ -121,4 +121,10 @@ var reverseList = function(head) {
 
 ## Leetcode stats
 
+### Iterative Approach
+
 ![Alt text](image.png)
+
+### Recursive approach
+
+![Alt text](image-1.png)
