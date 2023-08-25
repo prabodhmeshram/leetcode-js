@@ -48,3 +48,7 @@ var searchBST = function (root, val) {
 };
 
 ```
+
+## Leetcode stats
+
+![Alt text](image.png)
