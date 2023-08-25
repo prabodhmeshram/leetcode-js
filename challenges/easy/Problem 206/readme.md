@@ -57,3 +57,68 @@ var reverseList = function(head) {
 };
 
 ```
+
+## Recursive approach
+
+In recursive approach we assume in our case that next part of the current Node is
+already reversed. So we just update the next of the reversed node to currentNode
+and set currentNodes next as null, which points to the new tail of the list
+
+Our base case is when the List is empty or list has single node
+in that case we return the head pointer back.
+
+The intuition here is that we already know the next of the current node, from
+there we can always reset the next node of next of current Node
+
+So in our case if the Link list is something like
+
+1 --> 2 --> 3 --> null
+
+For 1st node we know the next node is 2. And next of 2 is 3. Assuming the fact that
+the remaining nodes except 1 is already reversed, we just know that we need to point
+the next of 2 to 1 to make the complete list in reverse order
+
+Let say the list is reversed, it will look something like this
+
+3 --> 2 ---> null
+
+1 --> 2
+
+As we can see 1 is still pointing to 2, we just do 1 --> next --> next = 1
+
+i.e we point the next of 2 to 1
+
+And finally point 1 --> next = null. so make it the tail node and complete the list
+
+We recursively send back previous list head and finally return the previous list which
+now looks like this
+
+3 --> 2 --> 1 --> null
+
+```
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+
+    if(head === null || head.next === null ) return head
+
+    let prevList = reverseList(head.next)
+    head.next.next = head
+    head.next = null
+
+    return prevList
+};
+```
+
+## Leetcode stats
+
+![Alt text](image.png)
