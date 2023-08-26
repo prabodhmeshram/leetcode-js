@@ -41,3 +41,14 @@ var getRow = function(rowIndex) {
 };
 
 ```
+
+## Recursive + DP solution
+
+In previous solution there was a problem as for calculating currenRow element,
+we needed to refer multiple times the previous rows and their previous and so on.
+
+We were kind of doing the same computation multiple times.
+
+The solution here is to cache the result of previous row in a hashmap
+and refer the hashmap incase the previous row is present. If not we
+only compute it once and store it for future access.
