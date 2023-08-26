@@ -3,16 +3,23 @@
  * @param {number} rowIndex
  * @return {number[]}
  */
+let memo = [];
 var getRow = function (rowIndex) {
-  if (rowIndex === 0) return [1];
+  if (rowIndex === 0) {
+    memo[rowIndex] = [1];
+    return memo[rowIndex];
+  }
 
-  let result = [];
+  memo[rowIndex] = [];
   for (let i = 0; i <= rowIndex; i++) {
-    if (i === 0 || i === rowIndex) result.push(1);
+    if (i === 0 || i === rowIndex) memo[rowIndex].push(1);
     else {
-      let preRow = getRow(rowIndex - 1);
-      result.push(preRow[i - 1] + preRow[i]);
+      if (!memo[rowIndex - 1]) {
+        memo[rowIndex - 1] = getRow(rowIndex - 1);
+      }
+      let preRow = memo[rowIndex - 1];
+      memo[rowIndex].push(preRow[i - 1] + preRow[i]);
     }
   }
-  return result;
+  return memo[rowIndex];
 };
