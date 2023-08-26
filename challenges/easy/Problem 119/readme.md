@@ -84,9 +84,4 @@ var getRow = function(rowIndex) {
 
 ### Recursion + DP stats(as only recursion timed out)
 
-Runtime
-
-![Alt text](image-1.png)
-
-Memory
-![Alt text](image.png)
+![Alt text](image-1.png) ![Alt text](image.png)
