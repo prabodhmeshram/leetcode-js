@@ -52,3 +52,41 @@ We were kind of doing the same computation multiple times.
 The solution here is to cache the result of previous row in a hashmap
 and refer the hashmap incase the previous row is present. If not we
 only compute it once and store it for future access.
+
+```
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+let memo = []
+var getRow = function(rowIndex) {
+    if(rowIndex === 0) {
+        memo[rowIndex] = [1]
+        return memo[rowIndex]
+    }
+
+    memo[rowIndex] = []
+    for(let i=0; i<= rowIndex; i++){
+        if(i === 0 || i === rowIndex ) memo[rowIndex].push(1)
+        else{
+            if(!memo[rowIndex-1]){
+                memo[rowIndex-1] = getRow(rowIndex-1)
+            }
+            let preRow = memo[rowIndex-1]
+            memo[rowIndex].push(preRow[i-1] + preRow[i])
+        }
+    }
+    return memo[rowIndex]
+};
+```
+
+## Leetcode Stats
+
+### Recursion + DP stats(as only recursion timed out)
+
+Runtime
+
+![Alt text](image-1.png)
+
+Memory
+![Alt text](image.png)
