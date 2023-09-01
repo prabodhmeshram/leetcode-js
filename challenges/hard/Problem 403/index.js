@@ -1,4 +1,5 @@
 /**
+ * https://leetcode.com/problems/frog-jump
  * @param {number[]} stones
  * @return {boolean}
  */
