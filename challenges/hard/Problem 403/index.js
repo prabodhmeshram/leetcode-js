@@ -15,8 +15,6 @@ var canCross = function (stones) {
 
   let hasJumped = proceedJump(stones[1], stones, 1);
 
-  console.log(hashMap);
-
   return hasJumped;
 };
 
@@ -46,9 +44,6 @@ var proceedJump = function (currentStone, stones, prevJumpLen) {
       ableToReach || proceedJump(sameJumpStone, stones, prevJumpLen);
   }
 
-  console.log("currentStone =>" + currentStone);
-  console.log("ableToReach =>" + ableToReach);
-  console.log("prevJumpLen add 1 =>" + prevJumpLen);
   let aheadStone = currentStone + prevJumpLen + 1;
   if (aheadStone === stones.at(-1)) return true;
   if (
